@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'My task manager'),
     );
   }
 }
@@ -30,7 +30,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int currentIndex;
+  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,10 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: currentIndex == 0 ? TextWidget("the add is called") : AddTask(),
+      body: currentIndex == 0
+          ? AddTask(
+              categories: ['selecteer een categorie', 'School', 'private'])
+          : TextWidget(text: "the eddit is called"),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (int index) {
           setState(() {
@@ -49,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
         currentIndex: currentIndex,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Add task'),
-          BottomNavigationBarItem(icon: Icon(Icons.edit), label: 'Edit task')
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings')
         ],
       ),
     );
