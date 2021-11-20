@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taskmanager/models/task.dart';
+import 'package:taskmanager/dal/models/task.dart';
 
 class AddTask extends StatefulWidget {
   final List<String> categories;
@@ -47,10 +47,10 @@ class _AddTaskState extends State<AddTask> {
               decoration: dec,
               validator: (value) {
                 if (value != null && value.isNotEmpty) {
-                  if (newTask.notes == null) {
-                    newTask.notes = List.empty(growable: true);
+                  if (newTask.subTask == null) {
+                    newTask.subTask = List.empty(growable: true);
                   }
-                  newTask.notes.add(value);
+                  newTask.subTask.add(value);
                 }
                 return null;
               },

@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:taskmanager/pages/createTask.dart';
+import 'package:taskmanager/pages/readAllTasks.dart';
+import 'package:taskmanager/pages/settings.dart';
 import 'package:taskmanager/widget/addTask.dart';
-import 'package:taskmanager/widget/text.dart';
+import 'package:taskmanager/widget/textFormInput.dart';
+
+// To get done to switch to more pages then 2 with a function or something
+// 1 is home, 2 is history, 3 is settings
+// and split the used pages up in widgets that can be reused
 
 void main() {
   runApp(MyApp());
@@ -30,7 +37,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int currentIndex = 0;
+  int currentIndex = 1;
+
+  List<Widget> pages = [CreateTask(), ReadAllTasks(), Settings()];
 
   @override
   Widget build(BuildContext context) {
@@ -39,10 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: currentIndex == 0
-          ? AddTask(
-              categories: ['selecteer een categorie', 'School', 'private'])
-          : TextWidget(text: "the eddit is called"),
+      body: pages[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: (int index) {
           setState(() {
@@ -52,6 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
         currentIndex: currentIndex,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Add task'),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings')
         ],
       ),
